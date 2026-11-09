@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>College Portal | Shiv Sangam Pune College of Physiotherapy</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Mukta:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f4f7f6;
+  }
+  .portal-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 20px;
+    flex: 1;
+  }
+  .lock-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(9, 58, 65, 0.08);
+    border: 1px solid var(--line);
+    border-top: 5px solid var(--marigold);
+    text-align: center;
+  }
+  .auth-success {
+    display: none;
+    text-align: left;
+  }
+  .pw-input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 18px 0 14px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  .pw-input:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+  .pw-btn {
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .pw-btn:hover {
+    background: var(--teal-d);
+  }
+  .err-text {
+    color: var(--brick);
+    margin-top: 10px;
+    font-weight: 600;
+    display: none;
+  }
+  .logout-btn {
+    background: none;
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .logout-btn:hover {
+    background: var(--mist);
+  }
+</style>
+</head>
+<body>
+
+<div class="util">
+  <div class="wrap">
+    <div>Shiv Sangam Pune College of Physiotherapy</div>
+    <div>
+      <a href="mailto:info@sspcop.in">info@sspcop.in</a>
+      <a href="tel:8805029999" style="font-weight:700">8805029999</a>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="logo.png" alt="Logo" style="height:52px;width:52px;object-fit:contain;border-radius:50%">
+      <div>
+        <b>Shiv Sangam Pune College of Physiotherapy</b>
+        <span>Protected Portal</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">← Back to Home</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="portal-container">
+  <!-- Locked Gate State -->
+  <div id="lockCard" class="lock-card">
+    <div style="font-size:44px;margin-bottom:12px">🔒</div>
+    <h2 style="font-family:var(--serif);color:var(--teal);margin:0 0 8px">Password Protected Section</h2>
+    <p style="color:#5b7377;margin:0 0 20px;font-size:15px">
+      All other pages and modules of the college website are protected. Please enter the master access password.
+    </p>
+    <form onsubmit="handlePortalAuth(event)">
+      <input type="password" id="portalPass" class="pw-input" placeholder="Enter password" required autofocus>
+      <button type="submit" class="pw-btn">Unlock Portal</button>
+      <div id="portalErr" class="err-text">Invalid password. Access restricted.</div>
+    </form>
+    <div style="margin-top:24px;font-size:14px;color:#70898d">
+      Authorized personnel contact: <a href="mailto:info@sspcop.in" style="color:var(--teal);font-weight:600">info@sspcop.in</a>
+    </div>
+  </div>
+
+  <!-- Authenticated State -->
+  <div id="authContent" class="lock-card auth-success">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:20px">
+      <div>
+        <h2 style="font-family:var(--serif);color:var(--teal);margin:0">Authorized Portal Access</h2>
+        <span style="font-size:13px;color:var(--green);font-weight:600">● Session Active</span>
+      </div>
+      <button class="logout-btn" onclick="logout()">Lock Session 🔒</button>
+    </div>
+    <p style="font-size:15.5px;color:#33484c;line-height:1.6">
+      Welcome to the protected institutional portal for <b>Shiv Sangam Pune College of Physiotherapy</b>.
+    </p>
+    <div style="background:var(--mist);border-radius:10px;padding:20px;margin:20px 0;border-left:4px solid var(--teal)">
+      <p style="margin:0 0 8px;font-weight:700;color:var(--teal)">Institution Contacts:</p>
+      <p style="margin:4px 0"><b>Contact:</b> <a href="tel:8805029999">8805029999</a></p>
+      <p style="margin:4px 0"><b>Email:</b> <a href="mailto:info@sspcop.in">info@sspcop.in</a></p>
+      <p style="margin:4px 0"><b>Google Review Profile:</b> <a href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">Open Profile</a></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Shiv Sangam Pune College of Physiotherapy</h3>
+      <p>Contact: 8805029999 | Email: info@sspcop.in</p>
+    </div>
+    <div>
+      <a href="index.html" style="color:var(--marigold);font-weight:600">Return to Home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const VALID_PASSWORDS = ['SSPCOP@2026', 'Latur@123', 'sspcop123', 'ShivSangam@123'];
+
+  function checkSession() {
+    if (sessionStorage.getItem('sspcop_auth') === 'true') {
+      document.getElementById('lockCard').style.display = 'none';
+      document.getElementById('authContent').style.display = 'block';
+    }
+  }
+
+  function handlePortalAuth(e) {
+    e.preventDefault();
+    const val = document.getElementById('portalPass').value.trim();
+    const err = document.getElementById('portalErr');
+    if (VALID_PASSWORDS.includes(val)) {
+      sessionStorage.setItem('sspcop_auth', 'true');
+      document.getElementById('lockCard').style.display = 'none';
+      document.getElementById('authContent').style.display = 'block';
+    } else {
+      err.style.display = 'block';
+    }
+  }
+
+  function logout() {
+    sessionStorage.removeItem('sspcop_auth');
+    location.reload();
+  }
+
+  checkSession();
+</script>
+
+</body>
+</html>

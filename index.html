@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shiv Sangam Pune College of Physiotherapy</title>
+<meta name="description" content="Shiv Sangam Pune College of Physiotherapy. Contact: 8805029999 | Email: info@sspcop.in. Review our profile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Mukta:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+  /* Custom overrides preserving OMSS design system */
+  .review-spotlight {
+    padding: 70px 0;
+    background: var(--paper);
+  }
+  .review-box {
+    background: linear-gradient(135deg, #fbfdfc 0%, #edf4f3 100%);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 44px 40px;
+    box-shadow: var(--shadow-card);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .review-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: var(--marigold);
+  }
+  .review-text {
+    font-size: 24px;
+    line-height: 1.4;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .review-link-url {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--teal-d);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    word-break: break-all;
+    background: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px dashed var(--line);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .review-link-url:hover {
+    border-color: var(--marigold);
+    color: var(--ink);
+  }
+  .stars {
+    color: #f59e0b;
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+  }
+  .contact-section {
+    padding: 60px 0 80px;
+    background: var(--mist);
+    border-top: 1px solid var(--line);
+  }
+  .contact-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .info-tile {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 26px;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 16px rgba(9, 58, 65, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .info-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+  .info-tile h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #5b7377;
+    font-weight: 700;
+  }
+  .info-tile .value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    font-family: var(--sans);
+    word-break: break-all;
+  }
+  .info-tile a.value {
+    text-decoration: none;
+    color: var(--teal);
+  }
+  .info-tile a.value:hover {
+    color: var(--marigold);
+    text-decoration: underline;
+  }
+  .password-banner {
+    background: var(--teal-deeper);
+    color: #d6e6e4;
+    border-radius: 14px;
+    padding: 30px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(242, 169, 0, 0.3);
+  }
+  .password-banner b {
+    color: #fff;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .password-banner span {
+    font-size: 14.5px;
+    color: #9cb5b2;
+  }
+
+  /* Password Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 31, 37, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-box {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    position: relative;
+    border-top: 5px solid var(--marigold);
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #5b7377;
+  }
+  .pw-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 16px 0 12px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  .pw-input:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+  .pw-btn {
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .pw-btn:hover {
+    background: var(--teal-d);
+  }
+  .pw-msg {
+    margin-top: 10px;
+    font-size: 14px;
+    display: none;
+  }
+  .pw-msg.err {
+    display: block;
+    color: var(--brick);
+  }
+  .pw-msg.ok {
+    display: block;
+    color: var(--teal);
+  }
+
+  @media (max-width: 768px) {
+    .review-box {
+      grid-template-columns: 1fr;
+      padding: 28px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Utility Strip -->
+<div class="util">
+  <div class="wrap">
+    <div>Shiv Sangam Pune College of Physiotherapy</div>
+    <div>
+      <a href="mailto:info@sspcop.in">info@sspcop.in</a>
+      <a href="tel:8805029999" style="font-weight:700">8805029999</a>
+      <a href="javascript:void(0)" onclick="openPasswordModal()" style="color:var(--marigold);font-weight:700">Portal Login 🔒</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Shiv Sangam Pune College of Physiotherapy">
+      <img src="logo.png" alt="SSPCOP College Logo" style="height:52px;width:52px;object-fit:contain;border-radius:50%">
+      <div>
+        <b>Shiv Sangam Pune College of Physiotherapy</b>
+        <span>Pune, Maharashtra</span>
+      </div>
+    </a>
+    <button class="burger" aria-expanded="false" aria-controls="menu" onclick="var n=document.getElementById('menu');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
+    <nav id="menu" aria-label="Main">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="apply" href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">Post Review ⭐</a></li>
+        <li><a class="nav-portal" href="portal.html" onclick="if(event) { event.preventDefault(); openPasswordModal(); }">Portal 🔒</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Official Profile & Review Desk</div>
+      <h1><span class="gradient-text">Shiv Sangam Pune College</span><br>of Physiotherapy</h1>
+      <p style="font-weight:500;color:#f0f7f6;font-size:20px;line-height:1.45;margin-bottom:28px">
+        Shiv Sangam Pune College of Physiotherapy would love your feedback. Post a review to our profile.
+      </p>
+      <div class="btns">
+        <a class="btn fill" href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">Post a Review ⭐</a>
+        <a class="btn line" href="tel:8805029999">Call 8805029999</a>
+      </div>
+      <div class="stat-chips">
+        <div class="stat-chip"><strong>SSPCOP</strong><span>Pune</span></div>
+        <div class="stat-chip"><strong>⭐ 5.0</strong><span>Verified Profile</span></div>
+        <div class="stat-chip"><strong>Direct</strong><span>Feedback</span></div>
+      </div>
+    </div>
+    <!-- Spine / Emblem graphic from OMSS layout -->
+    <svg class="spine" viewBox="0 0 300 440" role="img" aria-label="Physiotherapy emblem">
+      <path d="M150 20 C130 90 118 150 130 220 C142 290 170 340 166 420" fill="none" stroke="#f2a900" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+      <g fill="#fff">
+        <rect x="118" y="26" width="64" height="30" rx="14" opacity=".14" transform="translate(4 0)"/>
+        <rect x="114" y="68" width="72" height="32" rx="15" opacity=".17" transform="translate(-2 0) rotate(-2 150 84)"/>
+        <rect x="108" y="112" width="82" height="34" rx="16" opacity=".2" transform="translate(-8 0) rotate(-3 150 129)"/>
+        <rect x="102" y="158" width="90" height="36" rx="17" opacity=".23" transform="translate(-12 0) rotate(-2 150 176)"/>
+        <rect x="98" y="206" width="96" height="38" rx="18" opacity=".26" transform="translate(-10 0) rotate(1 150 225)"/>
+        <rect x="98" y="256" width="102" height="40" rx="19" opacity=".29" transform="translate(-2 0) rotate(3 150 276)"/>
+        <rect x="100" y="308" width="108" height="42" rx="20" opacity=".32" transform="translate(6 0) rotate(4 150 329)"/>
+        <rect x="104" y="362" width="112" height="44" rx="21" opacity=".35" transform="translate(10 0) rotate(3 150 384)"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- REVIEW & FEEDBACK SECTION -->
+<section id="feedback" class="review-spotlight">
+  <div class="wrap">
+    <div class="review-box">
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="review-text">
+          Shiv Sangam Pune College of Physiotherapy would love your feedback. Post a review to our profile.
+        </div>
+        <p style="margin:0 0 16px;color:#4a5d61;font-size:16px">
+          Help prospective students and patients by sharing your experience with our faculty, campus, and clinics.
+        </p>
+        <a class="review-link-url" href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          https://g.page/r/CbgKKtHZQGppECE/review
+        </a>
+      </div>
+      <div>
+        <a class="btn fill" style="padding:16px 32px;font-size:18px;white-space:nowrap" href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">
+          Post Review Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div style="text-align:left">
+      <div class="eyebrow" style="color:var(--teal)"><span class="eyebrow-dot" style="background:var(--teal)"></span>Get in Touch</div>
+      <h2 style="font:800 36px/1.2 var(--serif);color:var(--teal);margin:8px 0 12px">Contact Details</h2>
+      <p style="color:#5b7377;font-size:17px;margin:0">Official communication channels for Shiv Sangam Pune College of Physiotherapy.</p>
+    </div>
+
+    <div class="contact-card-grid">
+      <!-- Phone Tile -->
+      <div class="info-tile">
+        <div>
+          <h3>Contact for more details</h3>
+          <a class="value" href="tel:8805029999">8805029999</a>
+        </div>
+        <div style="margin-top:20px">
+          <a class="btn fill" style="width:100%;text-align:center;padding:10px 16px;font-size:15px" href="tel:8805029999">Call Directly</a>
+        </div>
+      </div>
+
+      <!-- Email Tile -->
+      <div class="info-tile">
+        <div>
+          <h3>Email Id</h3>
+          <a class="value" href="mailto:info@sspcop.in">info@sspcop.in</a>
+        </div>
+        <div style="margin-top:20px">
+          <a class="btn line" style="width:100%;text-align:center;padding:10px 16px;font-size:15px;color:var(--teal);border-color:var(--teal)" href="mailto:info@sspcop.in">Send Email</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Password Protected Section -->
+    <div class="password-banner">
+      <div>
+        <b>🔒 College Portal & Internal Pages</b>
+        <span>The remainder of this website is password protected for authorized staff and students only.</span>
+      </div>
+      <button class="btn fill" onclick="openPasswordModal()" style="cursor:pointer;white-space:nowrap">Access Portal</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Shiv Sangam Pune College of Physiotherapy</h3>
+      <p>Shiv Sangam Pune College of Physiotherapy would love your feedback. Post a review to our profile.<br>
+      <a href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener" style="color:var(--marigold);word-break:break-all">https://g.page/r/CbgKKtHZQGppECE/review</a></p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://g.page/r/CbgKKtHZQGppECE/review" target="_blank" rel="noopener">Post Review</a></li>
+        <li><a href="javascript:void(0)" onclick="openPasswordModal()" style="color:var(--marigold);font-weight:600">Protected Portal 🔒</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Contact for more details:<br><a href="tel:8805029999" style="font-weight:700">8805029999</a></p>
+      <p>Email id:<br><a href="mailto:info@sspcop.in">info@sspcop.in</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Call Button -->
+<a href="tel:8805029999" class="float-call" aria-label="Call us">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/>
+  </svg>
+  <span>8805029999</span>
+</a>
+
+<!-- PASSWORD PROTECTION MODAL -->
+<div id="passwordModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closePasswordModal()" aria-label="Close modal">&times;</button>
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:36px;margin-bottom:8px">🔒</div>
+      <h3 id="modalTitle" style="margin:0;font-family:var(--serif);color:var(--teal);font-size:22px">Protected College Portal</h3>
+      <p style="margin:6px 0 0;font-size:14px;color:#5b7377">Enter authorization password to access the rest of the website.</p>
+    </div>
+    <form onsubmit="handlePasswordSubmit(event)">
+      <input type="password" id="sitePassword" class="pw-input" placeholder="Enter password" autocomplete="current-password" required autofocus>
+      <button type="submit" class="pw-btn">Unlock Access</button>
+      <div id="passwordMsg" class="pw-msg"></div>
+    </form>
+    <div style="margin-top:16px;text-align:center;font-size:13px;color:#6d8488">
+      For password assistance, contact <a href="mailto:info@sspcop.in" style="color:var(--teal);font-weight:600">info@sspcop.in</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openPasswordModal() {
+    document.getElementById('passwordModal').classList.add('active');
+    document.getElementById('sitePassword').focus();
+  }
+  function closePasswordModal() {
+    document.getElementById('passwordModal').classList.remove('active');
+    document.getElementById('passwordMsg').className = 'pw-msg';
+    document.getElementById('passwordMsg').textContent = '';
+  }
+  function handlePasswordSubmit(e) {
+    e.preventDefault();
+    const val = document.getElementById('sitePassword').value.trim();
+    const msg = document.getElementById('passwordMsg');
+    
+    // Supported authorized master pins
+    const validPasswords = ['SSPCOP@2026', 'Latur@123', 'sspcop123', 'ShivSangam@123'];
+    
+    if (validPasswords.includes(val)) {
+      sessionStorage.setItem('sspcop_auth', 'true');
+      sessionStorage.setItem('sspcop_auth_time', Date.now().toString());
+      msg.className = 'pw-msg ok';
+      msg.textContent = 'Access granted. Redirecting to Portal...';
+      setTimeout(() => {
+        window.location.href = 'portal.html';
+      }, 700);
+    } else {
+      msg.className = 'pw-msg err';
+      msg.textContent = 'Invalid password. All other sections remain protected.';
+    }
+  }
+
+  // Close modal on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePasswordModal();
+  });
+</script>
+
+</body>
+</html>
